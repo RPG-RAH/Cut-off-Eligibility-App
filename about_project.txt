@@ -1,0 +1,13 @@
+Files Structures Project 
+
+Front End : Python Tkinter
+Backend   : C++
+
+Features :
+
+-> Indexing on Variable-length records
+-> Add Record
+-> Search Record
+-> Delete Record
+-> Display Records
+-> Check Cut-off Eligibility
