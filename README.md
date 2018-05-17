@@ -7,18 +7,18 @@ Backend : C++
 
 System Requirement
 
-OS : Ubuntu
+        OS      :    Ubuntu
 
-Package :
+        Package :
 
-        -> g++ (for C++)
+                -> g++ (for C++)
 
-        -> python 2.7 or higher 
+                -> python 2.7 or higher 
 
 
 Intructions to Run :
 
-  -> Run 
+  -> Run in Terminal
   
           $python gui.py
           
