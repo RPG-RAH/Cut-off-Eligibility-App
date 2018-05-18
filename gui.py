@@ -14,8 +14,10 @@ def mainMenu(frame) :
 
 def entry(frame) :
 	entryList = []
+	label = ["USN : ","NAME : ","AGE : ","CGPA : "]
 	for i in range(4) :
 		e = Entry(frame)
+		e.insert(0,label[i])
 		e.pack()
 		entryList.append(e)
 	return entryList
@@ -47,6 +49,7 @@ def search() :
 	global entryList
 	frame = Frame(root)
 	entryList = Entry(frame)
+	entryList.insert(0,"USN :")
 	entryList.pack()
 	Button(frame,text="Search",command=search_entry).pack(side=LEFT)
 	Button(frame,text="Back",command=goMainMenu).pack(side=RIGHT)
@@ -93,6 +96,7 @@ def eligibility() :
 	global entryList
 	frame = Frame(root)
 	entryList = Entry(frame)
+	entryList.insert(0,"USN :")
 	entryList.pack()
 	Button(frame,text="Check",command=check_eligible).pack(side=LEFT)
 	Button(frame,text="Back",command=goMainMenu).pack(side=RIGHT)
@@ -120,6 +124,7 @@ def delete() :
 	global entryList
 	frame = Frame(root)
 	entryList = Entry(frame)
+	entryList.insert(0,"USN :")
 	entryList.pack()
 	Button(frame,text="Delete",command=save_delete).pack(side=LEFT)
 	Button(frame,text="Back",command=goMainMenu).pack(side=RIGHT)
