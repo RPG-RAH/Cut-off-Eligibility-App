@@ -11,3 +11,7 @@ Features :
 -> Delete Record
 -> Display Records
 -> Check Cut-off Eligibility
+
+
+Bugs To Fix :
+  - Storing Entry With Spaces and Retriving the Same (Enclose Arguements in double quotes before sending it to cpp program
