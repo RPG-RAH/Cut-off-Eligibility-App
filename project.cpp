@@ -82,11 +82,12 @@ int Student::display()
 	{
 		unpack();
 		file<<endl<<"USN : "<<usn<<endl<<"Name : "<<name<<endl<<"Age : "<<age<<endl<<"CGPA : "<<cgpa<<endl<<"\t\t-------\t\t"<<endl;
+		i++;
 	}
 	else return -1;
 	file.close();
 	fd.close();
-	return 0;
+	return i?0:-1;
 }
 
 
@@ -131,11 +132,13 @@ int Student::search(char key[])
 
 int Student::del(char key[])
 {
-	char pos[6],prev_pos[6],buffi_copy[LEN];
+	char pos[6],new_pos[6],buffi_copy[LEN];
 	int i=0,flag=1;
 	ostringstream is,ds;
 	fd.open(data_file,ios::in);
 	fi.open(index_file,ios::in);
+	strcpy(pos,"0");
+	strcpy(new_pos,"0");
 	if(fd.good()&&fi.good())
 	{
 		while(fi>>buffi)
@@ -150,15 +153,21 @@ int Student::del(char key[])
 				ds<<buffd<<endl;
 				if(flag==0)
 				{
-					//Next Record write on This Prev Pos
-					strcpy(pos,prev_pos);
+					//Next Record is written with new Position
+					strcpy(pos,new_pos);
 					sprintf(buffi,"%s|%s",usn,pos);
 				}
 				is<<buffi<<endl;
+				//Generating new positions
+				if(flag==0)
+				{
+					strcpy(new_pos,to_string(atoi(pos)+strlen(buffd)).c_str());
+					cout<<"pos = "<<new_pos<<endl;
+				}
 			}
 			else
 			{
-				strcpy(prev_pos,pos);
+				strcpy(new_pos,pos);
 				flag=0;
 			}
 		}
@@ -183,13 +192,16 @@ bool Student::placementEligibility(char key[])
 {
 	bool eligible=false;
 	if(this->search(key)!=-1)
+	{
 		if(atof(cgpa)>=MIN_GRADE)
 			eligible=true;
+	}
+	else return false;
 	fstream file;
 	file.open("displayOutput",ios::trunc|ios::out);
 	file<<endl<<"USN : "<<usn<<endl<<"Name : "<<name<<endl<<"Age : "<<age<<endl
 	<<"CGPA : "<<cgpa<<endl<<"\t\t-------\t\t"<<endl;
 	file<<endl<<(eligible?"Student is Eligible":"Student is not Eligible")<<endl<<endl;
 	file.close();
-	return eligible;
+	return true;
 }
